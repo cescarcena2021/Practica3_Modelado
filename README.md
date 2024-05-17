@@ -1,4 +1,40 @@
-# Practica3_Modelado
+# Practica 3 Modelado
+
+## Objetivos 🎯​
+
+### Parte 🅰️​
+Configurar correctamente el modelo de robot utilizado en la práctica 2 (el que se realizo en Blender) para poder ser visualizado, operado y controlado usando el
+software disponible en ROS2.
+
+### Parte 🅱️
+Realizar la simulación en dos entornos de gazebo diferentes usando el robot realizado en la práctica 2 para estudiar el comportamiento del robot y su modelo de colisión en
+mundos distintos.
+
+## Comparativa de graficas 
+
+### Velocidades de los joitns
+
+#### Floor
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/03d04934-f173-46b3-a504-6250a563a87f)
+
+#### Sand
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/95a9bb45-d88d-4181-b486-8405068ec0a5)
+
+### Desplazamiento de la odometria
+
+#### Floor
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/0d1fea13-f73a-4aca-866c-20a8094ab211)
+
+#### Sand
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/73a39fd1-b39a-4214-975a-b48e72e8ee1b)
+
+### Aceleracion del sensor inercial
+
+#### Floor
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/f2cfda48-1b02-4d82-906f-0781dee214ee)
+
+#### Sand
+![image](https://github.com/cescarcena2021/Practica3_Modelado/assets/102520602/500a971f-6376-44c3-8c84-ceafe3de216a)
 
 ## Prueba en mundo "floor"
 
