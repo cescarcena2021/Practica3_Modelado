@@ -8,12 +8,11 @@ software disponible en ROS2.
 
 ## Video explicativo
 
-https://youtu.be/1G6miOtKPSc
+https://www.youtube.com/watch?v=WZY4ZvtxV7s
 
 ## Imagen del diagrama de nodos
 
 [frames_2024-05-19_19.45.17.pdf](https://github.com/cescarcena2021/Practica3_Modelado/files/15370417/frames_2024-05-19_19.45.17.pdf)
-
 
 ### Parte 🅱️
 Realizar la simulación en dos entornos de gazebo diferentes usando el robot realizado en la práctica 2 para estudiar el comportamiento del robot y su modelo de colisión en
