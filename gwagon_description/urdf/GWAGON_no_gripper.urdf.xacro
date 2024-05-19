@@ -1,0 +1,790 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 1.0.1 "Capricious Choutengan" -->
+<robot name="GWAGON" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find gwagon_description)/urdf/imu.urdf.xacro"/>
+  <xacro:include filename="$(find gwagon_description)/urdf/camera.urdf.xacro"/>
+
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <xacro:arg name="robot_id" default="robot"/>
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="robot_ns" default=""/>
+
+  <link name="Bajos">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Bajos.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="3.8 2.0 0.2"/>
+      </geometry>
+      <material name="Material.001"/>
+    </visual>
+  </link>
+
+  <link name="Capo">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Capo.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 2.0 0.1"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+  </link>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="base_link.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cube.001.dae" scale="2.0 1.1 1.0"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+  </link>
+
+  <link name="base_footprint">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <link name="Cristal">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Cristal.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 2.0 0"/>
+      </geometry>
+      <material name="Material.008"/>
+    </visual>
+  </link>
+
+  <link name="Rueda_dealntera_der_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_dealntera_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.003.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.002"/>
+    </visual>
+    <collision name="Rueda_dealntera_der">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.009.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Rueda_dealntera_iz_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_dealntera_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.001.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.005"/>
+    </visual>
+    <collision name="Rueda_dealntera_iz">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.011.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Rueda_trasera1_der_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_trasera1_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.002.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.003"/>
+    </visual>
+    <collision name="Rueda_trasera1_der">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.010.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Rueda_trasera1_iz_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_trasera1_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.005.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.002"/>
+    </visual>
+    <collision name="Rueda_trasera1_iz">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.007.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- <link name="Rueda_trasera2_der_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_trasera2_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.004.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.002"/>
+    </visual>
+    <collision name="Rueda_trasera2_der">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.008.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Rueda_trasera2_iz_">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="50"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Rueda_trasera2_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.006.dae" scale="0.4 0.4 1.0"/>
+      </geometry>
+      <material name="Material.006"/>
+    </visual>
+    <collision name="Rueda_trasera2_iz">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Torus.000.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+  </link> -->
+
+  <link name="Invisible">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Plane">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="2.0 2.0 0"/>
+      </geometry>
+    </visual>
+    <collision name="Plane">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="2.0 2.0 0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Suspension_del_der">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_del_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.008.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Suspension_del_iz">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_del_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.011.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Suspension_tra1_der">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_tra1_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.009.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Suspension_tras1_iz">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_tras1_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.012.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Suspension_tras2_der">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_tras2_der.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.010.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Suspension_tras2_iz">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Suspension_tras2_iz.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find gwagon_description)/meshes/dae/Cylinder.013.dae" scale="0.075 0.075 0.35"/>
+      </geometry>
+      <material name="Material.007"/>
+    </visual>
+  </link>
+
+  <link name="Union_b">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Union_b.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+  </link>
+
+  <link name="Union_b2">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="Union_b2.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="Z1">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B1.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="2.0"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z1">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="2.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Z2">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B2.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z2">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Z3">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B3.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z3">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Z4">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B4.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z4">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Z5">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B5.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z2">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Z6">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual name="B6.001">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="Material"/>
+    </visual>
+    <collision name="Z2">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_foodprint_" type="fixed">
+    <origin xyz="0 0 1.7" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <joint name="Bajos" type="fixed">
+    <origin xyz="0 0 -0.4" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Bajos"/>
+  </joint>
+
+  <joint name="Capo" type="fixed">
+    <origin xyz="1.5 0 -0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Capo"/>
+  </joint>
+
+  <joint name="Cristal" type="fixed">
+    <origin xyz="0.99263 0.01257 0.40732" rpy="0 1.0472 0"/>
+    <parent link="base_link"/>
+    <child link="Cristal"/>
+  </joint>
+
+  <joint name="Rueda_dealntera_der" type="continuous">
+    <origin xyz="1.3 1.0 -1.2" rpy="1.5708 0 3.1415926"/>
+    <parent link="base_link"/>
+    <child link="Rueda_dealntera_der_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_dealntera_der_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_dealntera_der" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_dealntera_der_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_dealntera_der_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo>
+
+  <joint name="Rueda_dealntera_iz" type="continuous">
+    <origin xyz="1.3 -1.0 -1.2" rpy="1.5708 0 0"/>
+    <parent link="base_link"/>
+    <child link="Rueda_dealntera_iz_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_dealntera_iz_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_dealntera_iz" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_dealntera_iz_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_dealntera_iz_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo>
+
+  <joint name="Rueda_trasera1_der" type="continuous">
+    <origin xyz="-1.45 1.0 -1.2" rpy="1.5708 0 3.1415926"/>
+    <parent link="base_link"/>  
+    <child link="Rueda_trasera1_der_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_trasera1_der_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_trasera1_der" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_trasera1_der_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_trasera1_der_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo>
+
+  <joint name="Rueda_trasera1_iz" type="continuous">
+    <origin xyz="-1.45 -1.0 -1.2" rpy="1.5708 0 0"/>
+    <parent link="base_link"/>
+    <child link="Rueda_trasera1_iz_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_trasera1_iz_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_trasera1_iz" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_trasera1_iz_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_trasera1_iz_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo>
+
+  <!-- <joint name="Rueda_trasera2_der" type="continuous">
+    <origin xyz="-0.4 1.0 -1.2" rpy="1.5708 0 3.1415926"/>
+    <parent link="base_link"/>
+    <child link="Rueda_trasera2_der_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_trasera2_der_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_trasera2_der" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_trasera2_der_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_trasera2_der_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo>
+
+  <joint name="Rueda_trasera2_iz" type="continuous">
+    <origin xyz="-0.4 -1.0 -1.2" rpy="1.5708 0 0"/>
+    <parent link="base_link"/>
+    <child link="Rueda_trasera2_iz_"/>
+    <axis xyz="0 0 1.0"/>
+    <limit effort="0" velocity="0"/>
+  </joint>
+
+  <transmission name="Rueda_trasera2_iz_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="Rueda_trasera2_iz" >
+          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Rueda_trasera2_iz_motor">
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <gazebo reference="Rueda_trasera2_iz_">
+      <mu1>5</mu1>
+      <mu2>5</mu2>
+  </gazebo> -->
+
+  <joint name="Suspension_del_der" type="fixed">
+    <origin xyz="1.3 0.54922 -0.8278" rpy="0.2618 0 0"/>
+    <parent link="base_link"/>
+    <child link="Suspension_del_der"/>
+  </joint>
+
+  <joint name="Suspension_del_iz" type="fixed">
+    <origin xyz="1.3 -0.54922 -0.8278" rpy="0.2618 0 -3.14159"/>
+    <parent link="base_link"/>
+    <child link="Suspension_del_iz"/>
+  </joint>
+
+  <joint name="Suspension_tra1_der" type="fixed">
+    <origin xyz="-0.4 0.54922 -0.8278" rpy="0.2618 0 0"/>
+    <parent link="base_link"/>
+    <child link="Suspension_tra1_der"/>
+  </joint>
+
+  <joint name="Suspension_tras1_iz" type="fixed">
+    <origin xyz="-1.45 -0.54922 -0.8278" rpy="0.2618 0 -3.14159"/>
+    <parent link="base_link"/>
+    <child link="Suspension_tras1_iz"/>
+  </joint>
+
+  <joint name="Suspension_tras2_der" type="fixed">
+    <origin xyz="-1.45 0.54922 -0.8278" rpy="0.2618 0 0"/>
+    <parent link="base_link"/>
+    <child link="Suspension_tras2_der"/>
+  </joint>
+
+  <joint name="Suspension_tras2_iz" type="fixed">
+    <origin xyz="-0.4 -0.54922 -0.8278" rpy="0.2618 0 -3.14159"/>
+    <parent link="base_link"/>
+    <child link="Suspension_tras2_iz"/>
+  </joint>
+
+  <joint name="Union_b" type="fixed">
+    <origin xyz="-1.9 1.0 0.3" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Union_b"/>
+  </joint>
+
+  <joint name="Union_b2" type="fixed">
+    <origin xyz="-1.9 -1.0 0.3" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Union_b2"/>
+  </joint>
+
+  <joint name="Z1" type="fixed">
+    <origin xyz="-1.9 0 0.3" rpy="1.5708 0 0"/>
+    <parent link="base_link"/>
+    <child link="Z1"/>
+  </joint>
+
+  <joint name="Z2" type="fixed">
+    <origin xyz="-1.9 1.0 0.15" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Z2"/>
+  </joint>
+
+  <joint name="Z3" type="fixed">
+    <origin xyz="-1.9 -1.0 0.15" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Z3"/>
+  </joint>
+
+  <joint name="Z4" type="fixed">
+    <origin xyz="-1.9 0 0.15" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Z4"/>
+  </joint>
+
+  <joint name="Z5" type="fixed">
+    <origin xyz="-1.55 -1.0 0.3" rpy="0 1.5708 0"/>
+    <parent link="base_link"/>
+    <child link="Z5"/>
+  </joint>
+
+  <joint name="Z6" type="fixed">
+    <origin xyz="-1.55 1.0 0.3" rpy="0 1.5708 0"/>
+    <parent link="base_link"/>
+    <child link="Z6"/>
+  </joint>
+
+  <joint name="Invisible" type="fixed">
+    <origin xyz="-0.8 0 -0.2" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Invisible"/>
+  </joint>
+
+  <material name="Material">
+    <color rgba="0.1 0.09069 0.08795 1.0"/>
+  </material>
+
+  <material name="Material.001">
+    <color rgba="0.8 0 0.0022 1.0"/>
+  </material>
+
+  <material name="Material.002">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+
+  <material name="Material.003">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+
+  <material name="Material.004">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+
+  <material name="Material.005">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+
+  <material name="Material.006">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+
+  <material name="Material.007">
+    <color rgba="0.64 0.01477 0.0169 1.0"/>
+  </material>
+
+  <material name="Material.008">
+    <color rgba="0.00996 0.19431 0.24 1.0"/>
+  </material>
+
+  <!-- *****SENSORES***** -->
+
+  <!-- IMU -->
+
+  <xacro:sensor_imu ns="$(arg robot_ns)" prefix="$(arg prefix)imu" parent="$(arg prefix)base_link">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  </xacro:sensor_imu>
+
+
+  <!-- CAMARA -->
+
+  <xacro:sensor_camera node_name="base_link_" node_namespace="GWAGON" 
+  frame_prefix="base_link_" parent="base_link">
+    <origin xyz="0.0 0.0 -0.01" rpy="0 3.141592 0"/>
+  </xacro:sensor_camera>
+
+  <!-- Gazebo ros control plugins -->
+  <!-- <xacro:arg name="config_controllers" default="$(find gwagon_description)/config/config.yaml"/>
+  <xacro:arg name="update_rate" default="100"/> -->
+  <xacro:arg name="config_controllers" default="$(find gwagon_description)/config/config.yaml"/>
+  <xacro:arg name="update_rate" default="100"/>
+  <xacro:include filename="$(find gwagon_description)/urdf/gazebo.urdf.xacro"/>
+  <xacro:ros2_control/>
+
+  <!-- <xacro:arg name="config_controllers" default="$(find practica3)/config/config.yaml"/>
+  <xacro:arg name="update_rate" default="100"/>
+  <xacro:include filename="$(find practica3)/urdf/gazebo_params.urdf"/>
+  <xacro:ros2_control/> -->
+
+</robot>
