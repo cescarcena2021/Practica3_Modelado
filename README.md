@@ -10,7 +10,7 @@ software disponible en ROS2.
 
 https://youtu.be/1G6miOtKPSc
 
-## Inagen del diagrama de nodos
+## Imagen del diagrama de nodos
 
 ![image](https://github.com/cescarcena2021/Practica3_Modelado/blob/main/frames_2024-05-19_19.45.17.pdf)
 
